@@ -10,7 +10,7 @@ namespace FORALU
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hola Mundo");
+            Texto textoUno = new Texto(@"C:\Users\Sebastian\source\repos\FORALU\FORALU\data\lagrimas_de_luz.txt");
             Console.ReadLine();
         }
     }

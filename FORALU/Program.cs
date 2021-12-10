@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FORALU
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Texto textoUno = new Texto(@"C:\Users\Sebastian\source\repos\FORALU\FORALU\data\lagrimas_de_luz.txt");
-            Console.ReadLine();
+            // Texto textoUno = new Texto(@"C:\Users\Sebastian\source\repos\FORALU\FORALU\data\lagrimas_de_luz.txt");
+            // Console.ReadLine();
+            Estudiante estudiante = new Estudiante();
+            PrincipalDatos principal = new PrincipalDatos(estudiante);
+            Application.Run(principal);
         }
     }
 }

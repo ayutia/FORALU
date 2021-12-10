@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq;
 
 // Clase encargada de manejar texto y sus operaciones.
 
@@ -13,37 +10,47 @@ namespace FORALU
     {
         private string _titulo;
         private int _numeroDePalabras;
-        List<string> lineas;
-        
+        List<string> textoEnLineas;
+        List<string> textoEnPalabras;
+
         public Texto(string rutaTexto)
         {
-            lineas = new List<string>();
-            lineas = File.ReadAllLines(rutaTexto).ToList();
-            _titulo = lineas[0];
-            _numeroDePalabras = SetNumeroPalabras();
-        } 
+            textoEnLineas = new List<string>();
+            textoEnLineas = File.ReadAllLines(rutaTexto).ToList();
+            _titulo = textoEnLineas[0];
+            textoEnPalabras = new List<string>();
+            SetTextoEnPalabras();
+            _numeroDePalabras = textoEnPalabras.Count();
+        }
 
         public string GetTitulo()
         {
             return _titulo;
         }
 
-        private int SetNumeroPalabras()
+        private void SetTextoEnPalabras()
         {
-            string[] _delimitadores = {" ",",",".",":",";","-","—","¿","?","¡","!","\t","\r\n"};
-            List<string> palabras = new List<string>();
-            foreach(var linea in lineas.Skip(1))
+            string[] delimitadores = { " ", ",", ".", ":", ";", "-", "—", "¿", "?", "¡", "!", "\t", "\r\n" };
+            foreach (var linea in textoEnLineas.Skip(1))
             {
-                string[] palabra = linea.Split(_delimitadores, System.StringSplitOptions.RemoveEmptyEntries);
-                palabras.AddRange(palabra);
+                string[] palabrasEnLinea = linea.Split(delimitadores, System.StringSplitOptions.RemoveEmptyEntries);
+                textoEnPalabras.AddRange(palabrasEnLinea);
             }
-            // prueba
-            foreach(var palabra in palabras)
-            {
-                Console.WriteLine(palabra);
-            }
-            Console.WriteLine(palabras.Count);
-            return palabras.Count();
+        }
+
+        public List<string> GetTextoLineas()
+        {
+            return textoEnLineas;
+        }
+
+        public List<string> GetTextoPalabras()
+        {
+            return textoEnPalabras;
+        }
+
+        public int GetTextoNumeroPalabras()
+        {
+            return _numeroDePalabras;
         }
 
     }
